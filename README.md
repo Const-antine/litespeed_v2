@@ -1,0 +1,15 @@
+# litespeed_v2
+Litespeed enterprise image for Docker deployment
+
+```
+MYSQL_DATABASE=wordpress       # obligatory
+MYSQL_ROOT_PASSWORD=password   # obligatory
+MYSQL_USER=wordpress           # obligatory
+MYSQL_PASSWORD=password        # obligatory
+PHP_VER=php7                   # obligatory
+DOMAIN=localhost
+ADMIN_USER=const
+ADMIN_PASS=qwerty1234
+LSWS_VER=5.0
+LSWS_SUBVER=5.4.9
+```
