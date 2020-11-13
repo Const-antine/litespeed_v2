@@ -1,5 +1,5 @@
 #!/bin/bash
-set -o allexport; source ../.env
+set -o allexport; source ../../.env
 
 [ -z "${VH_ROOT}"     ] && VH_ROOT='/var/www/vhosts'
 [ -z "$DOMAIN"        ] && DOMAIN='localhost'
