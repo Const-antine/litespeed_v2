@@ -13,3 +13,6 @@ ADMIN_PASS=qwerty1234
 LSWS_VER=5.0
 LSWS_SUBVER=5.4.9
 ```
+Dependencies:
+
+- ansible-galaxy collection install community.general
