@@ -43,7 +43,7 @@ variable "regions_list" {
 variable "instances_names" {
   description = "Create VM instance with these names"
   type        = list(string)
-  default     = ["vm_for_test", "lightweight-lts-instance"]
+  default     = ["vm-for-test"]
 }
 
 variable "image" {
@@ -56,6 +56,3 @@ variable "open_ports" {
   default = ["80", "443", "7080", "8080", "22", "1000-2000"]
 }
 
-# variable "worker_count" {
-#   type = number
-# }

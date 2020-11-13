@@ -44,13 +44,19 @@ resource "null_resource" "setup_docker" {
       host        = google_compute_instance.worker_instance[count.index].network_interface.0.access_config.0.nat_ip
     }
     inline = [
-      "apt-get update && apt-get install -y curl wget net-tools && apt-get install -y apt-transport-https ca-certificates  gnupg-agent software-properties-common",
+      "apt-get update && apt-get install -y curl wget net-tools && apt-get install -y apt-transport-https ca-certificates  gnupg-agent software-properties-common && apt-get -y install python3 python3-pip",
       "curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -",
       "add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable\"",
       "apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io",
       "curl -L \"https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
       "chmod +x /usr/local/bin/docker-compose",
-      "ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose"
+      "ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose",
+      "pip3 install docker-compose"
     ]
   }
+}
+
+
+output "ip" {
+  value = google_compute_instance.worker_instance[*].network_interface.0.access_config.0.nat_ip
 }

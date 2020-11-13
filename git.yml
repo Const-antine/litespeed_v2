@@ -1,0 +1,34 @@
+---
+- name: Fetch Git repo
+  hosts: worker
+  gather_facts: no
+  # vars:
+    # gitpath: "/testing"
+    # gitlink: "https://github.com/Const-antine/litespeed_v2.git"
+    # keyurl: "http://license.litespeedtech.com/reseller/trial.key"
+
+
+
+
+  tasks:
+   - include_vars: ./vars.yml
+   - name: Clone git repo with Litespeed
+     git:
+       repo: "{{ gitlink }}"
+       dest: "{{ gitpath }}"
+       clone: yes
+   - name: Provision .env file
+     copy:
+       src: ./env
+       dest: "{{ gitpath }}/litespeed/.env"
+   - name: fetch a trial key
+     get_url: url={{ keyurl }} dest="{{ gitpath }}/litespeed"
+
+   - name: Deploy both microservices
+     community.general.docker_compose:
+       build: yes
+       project_src: "{{ gitpath }}/litespeed"
+
+     register: output
+   - ansible.builtin.debug:
+        var: output
