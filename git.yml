@@ -2,13 +2,6 @@
 - name: Fetch Git repo
   hosts: worker
   gather_facts: no
-  # vars:
-    # gitpath: "/testing"
-    # gitlink: "https://github.com/Const-antine/litespeed_v2.git"
-    # keyurl: "http://license.litespeedtech.com/reseller/trial.key"
-
-
-
 
   tasks:
    - include_vars: ./vars.yml
